@@ -1,12 +1,9 @@
 package com.comercio.comercio.entity;
 
 import java.time.LocalDate;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
-import jakarta.persistence.Id;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
+
+import jakarta.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "cliente")
@@ -23,6 +20,10 @@ public class Cliente {
     private String cpf;
 
     @Column(name = "data_nascimento")
+
+    @OneToMany(mappedBy = "cliente", cascade = CascadeType.REMOVE)
+    private List<Contato> contatos;
+
     private LocalDate nascimento;
 
     private String endereco;
